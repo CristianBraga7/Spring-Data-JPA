@@ -17,13 +17,13 @@ import jakarta.persistence.Enumerated;
 import lombok.Data;
 import java.math.BigDecimal;
 
-//import lombok.NoArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "livro", schema = "public")
 @Data
-// @NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class Livro {
 
@@ -33,13 +33,13 @@ public class Livro {
     private UUID id;
 
     @Column(name = "isbn", length = 100, nullable = false)
-    private String isb;
+    private String isbn;
 
     @Column(name = "titulo", length = 100, nullable = false)
     private String titulo;
 
     @Column(name = "data_publicacao")
-    private LocalDate data_Publicacao;
+    private LocalDate dataPublicacao;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "genero", length = 30, nullable = false)
@@ -52,16 +52,4 @@ public class Livro {
     @JoinColumn(name = "id_autor")
     private Autor autor;
 
-    @Deprecated
-    public Livro() {
-    }
-
-    public Livro(String isb, String titulo, LocalDate data_Publicacao, GeneroLivro genero, BigDecimal preco, Autor autor) {
-        this.isb = isb;
-        this.titulo = titulo;
-        this.data_Publicacao = data_Publicacao;
-        this.genero = genero;
-        this.preco = preco;
-        this.autor = autor;
-    }
 }

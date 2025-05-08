@@ -8,17 +8,22 @@ package com.example.libraryapi.controller.dto;
 import java.time.LocalDate;
 import java.util.UUID;
 import com.example.libraryapi.model.Autor;
-
-
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Past;
 /**
  *
  * @author zooy
  */
 public record AutorDTO(
         UUID id,
-        String nome,
-        LocalDate dataNascimento,
-        String nacionalidade) {
+        @NotBlank(message = "Campo obrigatório") 
+        @Size(min = 2, max = 100, message = "Campo fora do padrão") String nome,
+        @NotNull(message = "Campo obrigatório") 
+        @Past(message = "Data de nascimento inválida") LocalDate dataNascimento, 
+        @NotBlank(message = "Campo obrigatório") 
+        @Size(min = 2, max = 50, message = "Campo fora do padrão") String nacionalidade) {
 
     public Autor mapearParaAutor() {
         Autor autor = new Autor();
